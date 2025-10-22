@@ -2,7 +2,7 @@ pub mod create_account;
 pub mod login;
 
 use crate::auth::Error;
-use crate::auth::domain::{ Domain, NewDomain };
+use crate::auth::domain::{Domain, NewDomain};
 
 #[derive(Debug)]
 pub enum SessionState {
@@ -28,5 +28,4 @@ pub struct Session {
     refresh_token: String,
 }
 
-impl Session {
-}
+impl Session {}

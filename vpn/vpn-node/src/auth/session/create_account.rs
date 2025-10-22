@@ -1,6 +1,6 @@
 use crate::auth::Error;
-use crate::auth::session::{ NewDomain, Domain };
 use crate::auth::session::Session;
+use crate::auth::session::{Domain, NewDomain};
 
 pub struct CreateAccount {
     domain: NewDomain,

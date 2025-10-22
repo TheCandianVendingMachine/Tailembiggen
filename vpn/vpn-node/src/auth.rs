@@ -3,11 +3,11 @@ mod error;
 mod payloads;
 mod session;
 
-use std::fmt;
 use rsa::rand_core::OsRng;
 use rsa::{RsaPrivateKey, RsaPublicKey};
+use std::fmt;
 
-pub use crate::auth::domain::{ Domain, NewDomain };
+pub use crate::auth::domain::{Domain, NewDomain};
 pub use error::Error;
 
 #[derive(Clone)]

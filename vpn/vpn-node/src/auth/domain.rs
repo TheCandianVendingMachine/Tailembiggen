@@ -14,7 +14,10 @@ pub struct Domain {
 }
 
 impl NewDomain {
-    pub fn new<T>(domain: T) -> NewDomain where T: Into<String> {
+    pub fn new<T>(domain: T) -> NewDomain
+    where
+        T: Into<String>,
+    {
         NewDomain {
             name: domain.into(),
         }
@@ -36,7 +39,7 @@ impl TryFrom<NewDomain> for Domain {
     fn try_from(domain: NewDomain) -> Result<Self, Self::Error> {
         Ok(Domain {
             name: domain.name,
-            key: Key::generate()?
+            key: Key::generate()?,
         })
     }
 }
