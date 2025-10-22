@@ -1,11 +1,9 @@
 use crate::auth::Error;
-use crate::auth::Key;
-use crate::auth::session::Domain;
+use crate::auth::session::{ NewDomain, Domain };
 use crate::auth::session::Session;
 
 pub struct CreateAccount {
-    domain: Domain,
-    key: Key,
+    domain: NewDomain,
 }
 
 pub struct CreateAccountWithUsername {
@@ -14,9 +12,8 @@ pub struct CreateAccountWithUsername {
 }
 
 impl CreateAccount {
-    pub fn domain(domain: Domain) -> Result<CreateAccount, Error> {
-        let key = Key::generate()?;
-        Ok(CreateAccount { domain, key })
+    pub fn domain(domain: NewDomain) -> CreateAccount {
+        CreateAccount { domain }
     }
 
     pub fn username<T>(self, username: T) -> Result<CreateAccountWithUsername, Error>
@@ -37,7 +34,7 @@ impl CreateAccountWithUsername {
     {
         let password = password.into();
         Ok(Session {
-            domain: self.create_account.domain,
+            domain: Domain::try_from(self.create_account.domain)?,
             session_token: String::new(),
             refresh_token: String::new(),
         })

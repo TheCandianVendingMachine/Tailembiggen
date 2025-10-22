@@ -2,7 +2,7 @@ pub mod create_account;
 pub mod login;
 
 use crate::auth::Error;
-use crate::auth::domain::Domain;
+use crate::auth::domain::{ Domain, NewDomain };
 
 #[derive(Debug)]
 pub enum SessionState {
@@ -23,13 +23,10 @@ impl Expired {
 
 #[derive(Debug, Clone)]
 pub struct Session {
-    domain: Domain,
+    pub domain: Domain,
     session_token: String,
     refresh_token: String,
 }
 
 impl Session {
-    pub fn validate(self) -> SessionState {
-        SessionState::Ok(self)
-    }
 }

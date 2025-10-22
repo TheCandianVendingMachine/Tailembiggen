@@ -3,16 +3,23 @@ mod error;
 mod payloads;
 mod session;
 
+use std::fmt;
 use rsa::rand_core::OsRng;
 use rsa::{RsaPrivateKey, RsaPublicKey};
 
+pub use crate::auth::domain::{ Domain, NewDomain };
 pub use error::Error;
-pub use session::create_account::CreateAccount;
-pub use session::login::Login;
 
+#[derive(Clone)]
 struct Key {
     public_key: RsaPublicKey,
     private_key: RsaPrivateKey,
+}
+
+impl fmt::Debug for Key {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        self.public_key.fmt(f)
+    }
 }
 
 impl Key {
@@ -28,15 +35,19 @@ impl Key {
     }
 }
 
+#[derive(Debug)]
 pub struct Client {
     session: session::Session,
-    key: Key,
 }
 
 impl Client {
     pub fn from_session(session: session::Session) -> Client {
         Client { session }
     }
+}
 
-    pub fn refresh_keys(&mut self) {}
+impl From<session::Session> for Client {
+    fn from(session: session::Session) -> Client {
+        Client::from_session(session)
+    }
 }
