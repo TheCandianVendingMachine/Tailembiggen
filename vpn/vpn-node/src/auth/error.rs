@@ -12,5 +12,5 @@ pub enum Error {
     #[error("Could not create account")]
     AccountCreationError,
     #[error("Domain \"{domain:?}\" does not exist")]
-    DomainDoesNotExist { domain: Domain },
+    UnknownDomain { domain: Domain },
 }

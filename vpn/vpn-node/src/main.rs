@@ -10,6 +10,5 @@ async fn main() -> anyhow::Result<()> {
             .username("bailey")?
             .password("1234").await?
     );
-    dbg!(client);
     Ok(())
 }
