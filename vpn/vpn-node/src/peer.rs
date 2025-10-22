@@ -1,7 +1,7 @@
 use std::net;
 mod payload;
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Copy, Clone)]
 pub struct Address {
     ip: net::IpAddr,
     port: u16,
