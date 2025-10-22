@@ -5,6 +5,7 @@ edition = "2024"
 
 [dependencies]
 anyhow = "1.0.100"
+bincode = "2.0.1"
 reqwest = "0.12.24"
 rsa = "0.9.8"
 serde = { version = "1.0.228", features = ["derive"] }
